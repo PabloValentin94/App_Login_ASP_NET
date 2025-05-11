@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App_Login_ASP_NET", "App_Login_ASP_NET\App_Login_ASP_NET.csproj", "{0EDE3065-438F-4B5C-8A27-F2EDF23BF9EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0EDE3065-438F-4B5C-8A27-F2EDF23BF9EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EDE3065-438F-4B5C-8A27-F2EDF23BF9EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EDE3065-438F-4B5C-8A27-F2EDF23BF9EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EDE3065-438F-4B5C-8A27-F2EDF23BF9EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6E795CE4-8BED-4726-93F8-E3AC0210D7BC}
+	EndGlobalSection
+EndGlobal
