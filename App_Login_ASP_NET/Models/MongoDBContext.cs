@@ -57,9 +57,9 @@ namespace App_Login_ASP_NET.Models
 
         // Coleções.
 
-        public IMongoCollection<User> Users { get { return Database.GetCollection<User>("User"); } }
+        public IMongoCollection<AppUser> Users { get { return Database.GetCollection<AppUser>("User"); } }
 
-        public IMongoCollection<Role> Roles { get { return Database.GetCollection<Role>("Role"); } }
+        public IMongoCollection<AppRole> Roles { get { return Database.GetCollection<AppRole>("Role"); } }
 
     }
 

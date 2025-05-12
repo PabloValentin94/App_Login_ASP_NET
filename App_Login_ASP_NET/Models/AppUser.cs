@@ -9,7 +9,7 @@ namespace App_Login_ASP_NET.Models
     public class AppUser : MongoIdentityUser // Classe padronizada utilizada para cadastrar usuários.
     {
 
-
+        public string? Name { get; set; }
 
     }
 
