@@ -1,0 +1,67 @@
+﻿@{
+
+    ViewData["Title"] = "Sign In";
+
+}
+
+<h1>Sign In</h1>
+
+<h4>User</h4>
+
+<hr />
+
+<div class="row">
+
+    <div class="col-md-4">
+
+        <form asp-action="Login">
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="form-group">
+
+                <label for="Email" class="control-label">E-mail</label>
+                <input type="email" name="Email" class="form-control" required />
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="Password" class="control-label">Password</label>
+                <input type="password" name="Password" class="form-control" required />
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="Keep_Connected" class="control-label">Keep Connected?</label>
+                <select name="Keep_Connected" class="form-control" required>
+
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+
+                </select>
+
+            </div>
+
+            <br />
+
+            <div class="form-group">
+
+                <button type="submit" class="btn btn-primary">Entrar</button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<div>
+
+    <br />
+    <a asp-controller="User" asp-action="Create" asp-route-role="Comum">Create an Account</a> |
+    <a asp-controller="Home" asp-action="Index">Back to Home</a>
+
+</div>

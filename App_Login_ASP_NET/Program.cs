@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+
 using App_Login_ASP_NET.Data;
+
 using App_Login_ASP_NET.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -44,8 +46,18 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+// Habilita os recursos de autenticação de usuários.
+
+app.UseAuthentication();
+
+// Habilita os recursos de verificação de nível de acesso (Autorizações) do usuário autenticado.
+
 app.UseAuthorization();
 
+// Especifica a "Action" que deve ser executada assim que a aplicação entra em execução.
+
 app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
+
+// Inicia a execução da aplicação.
 
 app.Run();

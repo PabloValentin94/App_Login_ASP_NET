@@ -11,10 +11,19 @@ using App_Login_ASP_NET.Models;
 using MongoDB.Driver;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace App_Login_ASP_NET.Controllers
 {
 
+    /*
+     
+        É necessário o usuário estar autenticado e ser um administrador para usar 
+        os recursos desta classe.
+
+    */
+
+    [Authorize(Roles = "Administrador")]
     public class UserController : Controller
     {
 
@@ -73,6 +82,7 @@ namespace App_Login_ASP_NET.Controllers
         }
 
         // GET: User/Create
+        [AllowAnonymous] // Este método não requer autenticação.
         public IActionResult Create(string role)
         {
 
@@ -87,6 +97,7 @@ namespace App_Login_ASP_NET.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous] // Este método não requer autenticação.
         public async Task<IActionResult> Create([Bind("Id,Name,Email,Phone,Password")] User user, string Role)
         {
 

@@ -10,10 +10,19 @@ using App_Login_ASP_NET.Data;
 using App_Login_ASP_NET.Models;
 using MongoDB.Driver;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace App_Login_ASP_NET.Controllers
 {
 
+    /*
+     
+        É necessário o usuário estar autenticado e ser um administrador para usar 
+        os recursos desta classe.
+
+    */
+
+    [Authorize(Roles = "Administrador")]
     public class RoleController : Controller
     {
 
