@@ -273,7 +273,7 @@ namespace App_Login_ASP_NET.Controllers
         private bool RoleExists(Guid id)
         {
 
-            return _context.Roles.Find(r => r.Id == id).Any();
+            return this._context.Roles.Find(r => r.Id == id).Any();
 
         }
 

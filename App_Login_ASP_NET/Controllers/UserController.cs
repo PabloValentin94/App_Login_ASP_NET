@@ -73,8 +73,10 @@ namespace App_Login_ASP_NET.Controllers
         }
 
         // GET: User/Create
-        public IActionResult Create()
+        public IActionResult Create(string role)
         {
+
+            ViewBag.Role = role;
 
             return View();
 
@@ -85,7 +87,7 @@ namespace App_Login_ASP_NET.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Email,Phone,Password")] User user)
+        public async Task<IActionResult> Create([Bind("Id,Name,Email,Phone,Password")] User user, string Role)
         {
 
             if (ModelState.IsValid)
@@ -110,7 +112,31 @@ namespace App_Login_ASP_NET.Controllers
                 if (user_sign_up_result.Succeeded)
                 {
 
-                    return RedirectToAction("Index", "Home");
+                    try
+                    {
+
+                        IdentityResult role_attribution_result = await this._app_users_manager.AddToRoleAsync(app_user, Role);
+
+                        return RedirectToAction("Index", "Home");
+
+                    }
+
+                    catch (Exception)
+                    {
+
+                        /*
+
+                            Caso ocorra um erro relacionado a atribuição do cargo especificado 
+                            (Como ele não existir, por exemplo.), o usuário que foi cadastrado 
+                            será excluído, evitando inconsistência de dados.
+
+                        */
+
+                        await this._context.Users.DeleteOneAsync(u => u.Id == app_user.Id);
+
+                        ModelState.AddModelError("", "The specified role does not exists.");
+
+                    }
 
                 }
 
@@ -292,7 +318,7 @@ namespace App_Login_ASP_NET.Controllers
         private bool UserExists(Guid? id)
         {
 
-            return _context.Users.Find(u => u.Id == id).Any();
+            return this._context.Users.Find(u => u.Id == id).Any();
 
         }
 
