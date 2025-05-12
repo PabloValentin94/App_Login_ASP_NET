@@ -13,7 +13,7 @@ namespace App_Login_ASP_NET.Models
         public Guid Id { get { return this._id; } set { this._id = value; } }
 
         [Required]
-        public string? Nome { get; set; }
+        public string? Name { get; set; }
 
     }
 

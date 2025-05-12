@@ -22,7 +22,7 @@ namespace App_Login_ASP_NET.Controllers
 
         private readonly UserManager<AppUser> _app_users_manager;
 
-        public UserController(UserManager<AppUser> app_users_manager, RoleManager<AppRole> app_roles_manager)
+        public UserController(UserManager<AppUser> app_users_manager)
         {
 
             this._context = new MongoDBContext();
@@ -40,7 +40,7 @@ namespace App_Login_ASP_NET.Controllers
             foreach (AppUser app_user in (await _context.Users.Find(u => u.Id != null).ToListAsync()))
             {
 
-                users.Add(this.AssociateUserClasses(app_user));
+                users.Add(this.Generate_Equivalent_Object(app_user));
 
             }
 
@@ -68,7 +68,7 @@ namespace App_Login_ASP_NET.Controllers
 
             }
 
-            return View(this.AssociateUserClasses(user));
+            return View(this.Generate_Equivalent_Object(user));
 
         }
 
@@ -93,6 +93,8 @@ namespace App_Login_ASP_NET.Controllers
 
                 AppUser app_user = new AppUser();
 
+                app_user.Id = Guid.NewGuid();
+
                 app_user.UserName = Regex.Replace(Models.User.Remove_Accents(user.Name), @"[^a-zA-Z0-9]", "");
 
                 app_user.Email = user.Email;
@@ -103,9 +105,9 @@ namespace App_Login_ASP_NET.Controllers
 
                 app_user.Name = user.Name;
 
-                IdentityResult user_sign_in_result = await this._app_users_manager.CreateAsync(app_user, user.Password);
+                IdentityResult user_sign_up_result = await this._app_users_manager.CreateAsync(app_user, user.Password);
 
-                if (user_sign_in_result.Succeeded)
+                if (user_sign_up_result.Succeeded)
                 {
 
                     return RedirectToAction("Index", "Home");
@@ -115,7 +117,7 @@ namespace App_Login_ASP_NET.Controllers
                 else
                 {
 
-                    foreach (IdentityError error in user_sign_in_result.Errors)
+                    foreach (IdentityError error in user_sign_up_result.Errors)
                     {
 
                         ModelState.AddModelError("", error.Description);
@@ -150,7 +152,7 @@ namespace App_Login_ASP_NET.Controllers
 
             }
 
-            User user = this.AssociateUserClasses(app_user);
+            User user = this.Generate_Equivalent_Object(app_user);
 
             user.Password = app_user.PasswordHash;
 
@@ -266,7 +268,7 @@ namespace App_Login_ASP_NET.Controllers
 
             }
 
-            return View(this.AssociateUserClasses(user));
+            return View(this.Generate_Equivalent_Object(user));
 
         }
 
@@ -294,7 +296,7 @@ namespace App_Login_ASP_NET.Controllers
 
         }
 
-        private User AssociateUserClasses(AppUser app_user)
+        private User Generate_Equivalent_Object(AppUser app_user)
         {
 
             User user = new User()

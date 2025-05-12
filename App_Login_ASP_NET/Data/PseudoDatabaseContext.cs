@@ -13,7 +13,9 @@ namespace App_Login_ASP_NET.Data
 
         public PseudoDatabaseContext(DbContextOptions<PseudoDatabaseContext> options) : base(options) {  }
 
-        public DbSet<App_Login_ASP_NET.Models.User> User { get; set; } = default!;
+        public DbSet<App_Login_ASP_NET.Models.User> Users { get; set; } = default!;
+
+        public DbSet<App_Login_ASP_NET.Models.Role> Roles { get; set; } = default!;
 
     }
 

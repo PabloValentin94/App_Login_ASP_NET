@@ -1,7 +1,9 @@
 ﻿@model App_Login_ASP_NET.Models.User
 
 @{
+
     ViewData["Title"] = "Create";
+
 }
 
 <h1>Create</h1>
@@ -69,5 +71,7 @@
 </div>
 
 @section Scripts {
+
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<App_Login_ASP_NET.Models.User>
+﻿@model IEnumerable<App_Login_ASP_NET.Models.Role>
 
 @{
 
@@ -24,14 +24,6 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
 
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.Phone)
-            </th>
-
             <th></th>
 
         </tr>
@@ -47,14 +39,6 @@
 
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Phone)
                 </td>
 
                 <td>
